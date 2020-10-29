@@ -17,15 +17,22 @@
 </head>
 
 <body>
+	<div class="test-wrapper">
+		<div id="jsOverlay" class="overlay" style="display: none;"></div>
+		<div class="test-description">
+			<div id="jsLoading" class="loading" style="display: none;"></div>
+			<div id="jsLoadingText" class="loadingText" style="display: none;"><p>사진을 분석중입니다.</p></div>
+		</div>
+	</div>
     <nav class="navbar navbar-expand-lg navbar-light nav-distance">
-        <a class="navbar-brand" href="#">외모 키워드 테스트</a>
+        <a class="navbar-brand" href="https://keyword-test.netlify.app">외모 키워드 테스트</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
+                    <a class="nav-link" href="https://keyword-test.netlify.app">Home
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
@@ -122,10 +129,17 @@
         // More API functions here:
         // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
         // the link to your model provided by Teachable Machine export panel
-        const URL = "https://teachablemachine.withgoogle.com/models/jXY80siOb/";
+		
+        //const URL = "https://teachablemachine.withgoogle.com/models/jXY80siOb/";
+        const URL = "https://teachablemachine.withgoogle.com/models/E1CuN9_db/";
+		
+		
         let model, webcam, labelContainer, maxPredictions;
         // Load the image model and setup the webcam
         async function init() {
+			document.getElementById("jsOverlay").style.display = "block";
+			document.getElementById("jsLoading").style.display = "block";
+			document.getElementById("jsLoadingText").style.display = "block";
             const modelURL = URL + "model.json";
             const metadataURL = URL + "metadata.json";
             // load the model and metadata
@@ -142,80 +156,48 @@
         // run the webcam image through the image model
         async function predict() {
             // predict can take in an image, video or canvas html element
-            var image = document.getElementById("face-image")
+            var image = document.getElementById("face-image");
             const prediction = await model.predict(image, false);
-			prediction.sort((a, b) => parseFloat(b.probability) - parseFloat(a.probability));
 			
-			var resultName, resultClass
-			switch(prediction[0].className){
-				case "귀여운":
-					resultName = "귀여운";
-					resultClass = "cute";
-					break;
-				case "섹시한":
-					resultName = "섹시한";
-					resultClass = "sexy";
-					break;
-				case "우아한":
-					resultName = "우아한";
-					resultClass = "elegant";
-					break;
-				case "청순한":
-					resultName = "청순한";
-					resultClass = "innocent";
-					break;
-				case "풋풋한":
-					resultName = "풋풋한";
-					resultClass = "fresh";
-					break;
-				default:
-					resultName = "알수없음";
-					resultClass = "undefined";
-					break;
-			}
+			result = [
+				{className: "귀여운", resultClass: "cute", probability: parseFloat((parseFloat(prediction[0].probability) + parseFloat(prediction[1].probability) + parseFloat(prediction[2].probability)).toFixed(2))},
+				{className: "섹시한", resultClass: "sexy", probability: parseFloat((parseFloat(prediction[3].probability) + parseFloat(prediction[4].probability) + parseFloat(prediction[5].probability)).toFixed(2))},
+				{className: "우아한", resultClass: "elegant", probability: parseFloat((parseFloat(prediction[6].probability) + parseFloat(prediction[7].probability) + parseFloat(prediction[8].probability)).toFixed(2))},
+				{className: "청순한", resultClass: "innocent", probability: parseFloat((parseFloat(prediction[9].probability) + parseFloat(prediction[10].probability) + parseFloat(prediction[11].probability)).toFixed(2))},
+				{className: "풋풋한", resultClass: "fresh", probability: parseFloat((parseFloat(prediction[12].probability) + parseFloat(prediction[13].probability) + parseFloat(prediction[14].probability)).toFixed(2))}
+			];
+		
+			
+			result.sort((a, b) => parseFloat(b.probability) - parseFloat(a.probability));
+			
+			document.getElementById("jsOverlay").style.display = "none";
+			document.getElementById("jsLoading").style.display = "none";
+			document.getElementById("jsLoadingText").style.display = "none";
 
-            var title = "<div class='" + resultClass + "-keyword-title'>" + resultName + "</div>"
-            var explain = "<div class='keyword-explain pt-2'>당신의 키워드는 '" + resultName + "'입니다.</div>"
+            var title = "<div class='" + result[0].resultClass + "-keyword-title'>" + result[0].className + "</div>"
+            var explain = "<div class='keyword-explain pt-2'>당신의 키워드는 '" + result[0].className + "'입니다.</div>"
             $('.result-message').html(title + explain);
+			
 			var barWidth, percentage;
-            for (let i = 0; i < maxPredictions; i++) {
-                if (prediction[i].probability.toFixed(2) > 0.1) {
-                    barWidth = Math.round(prediction[i].probability.toFixed(2) * 100) + "%";
-					percentage = Math.round(prediction[i].probability.toFixed(2) * 100) + "%";
-                } else if (prediction[i].probability.toFixed(2) >= 0.01) {
+            for (let i = 0; i < result.length; i++) {
+                if (result[i].probability.toFixed(2) > 0.1) {
+                    barWidth = Math.round(result[i].probability.toFixed(2) * 100) + "%";
+					percentage = Math.round(result[i].probability.toFixed(2) * 100) + "%";
+                } else if (result[i].probability.toFixed(2) >= 0.01) {
                     barWidth = "4%"
-					percentage = Math.round(prediction[i].probability.toFixed(2) * 100) + "%";
+					percentage = Math.round(result[i].probability.toFixed(2) * 100) + "%";
                 } else {
                     barWidth = "2%"
 					percentage = "";
                 }
-				var keywordClass;
-				switch(prediction[i].className){
-				case "귀여운":
-					keywordClass = "cute";
-					break;
-				case "섹시한":
-					keywordClass = "sexy";
-					break;
-				case "우아한":
-					keywordClass = "elegant";
-					break;
-				case "청순한":
-					keywordClass = "innocent";
-					break;
-				case "풋풋한":
-					keywordClass = "fresh";
-					break;
-				default:
-					keywordClass = "undefined";
-					break;
-			}
+	
 				
-                var label = "<div class='d-flex'><div class='keyword-label d-flex align-items-center'>" + prediction[i].className + "</div>"
-                var bar = "<div class='bar-container position-relative container'><div class='" + keywordClass + "-box'></div><div class='d-flex justify-content-center align-items-center " + keywordClass + "-bar' style='width: " + barWidth + "'><span class='d-block percent-text'>" + percentage + "</span></div></div></div>"
+                var label = "<div class='d-flex'><div class='keyword-label d-flex align-items-center'>" + result[i].className + "</div>"
+                var bar = "<div class='bar-container position-relative container'><div class='" + result[i].resultClass + "-box'></div><div class='d-flex justify-content-center align-items-center " + result[i].resultClass + "-bar' style='width: " + barWidth + "'><span class='d-block percent-text'>" + percentage + "</span></div></div></div>"
                 labelContainer.childNodes[i].innerHTML = label + bar;
 			}
         }
+
     </script>
 
 </body>
