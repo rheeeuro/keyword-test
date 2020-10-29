@@ -1,3 +1,17 @@
+@font-face {
+     font-family: 'NIXGONM-Vb';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/NIXGONM-Vb.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+html {
+  background-image: linear-gradient(to bottom right, #e1bee7, #b2ebf2);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'NIXGONM-Vb';
+}
+
 .test-wrapper .overlay {
 	 display: block;
 	 z-index: 1000;
@@ -47,10 +61,10 @@
  
 
 body {
-  font-family: 'Jua', sans-serif;
-  background-color: #ffffff;
+  font-family: 'NIXGONM-Vb';
+  background-color: rgba(1, 1, 1, 0);
   box-sizing: border-box;
-  color: #35465d;
+  color: #ffffff;
 }
 
 .file-upload {
@@ -58,7 +72,7 @@ body {
     margin: 0 auto;
     border-radius: 10px;
     border: solid 1.5px #f6f7fa;
-    background-color: #f6f7fa;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .file-upload-btn {
@@ -115,7 +129,7 @@ body {
     object-fit: contain;
     border-radius: 10px;
     border: dashed 1.5px #35465d;
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 .image-dropping,
@@ -178,14 +192,15 @@ body {
 }
 
 .navbar-light .navbar-brand {
-  font-family: NanumSquareR;
+  font-family: 'NIXGONM-Vb';
   line-height: 1.68;
   text-align: left;
-  color: #35465d; 
+  color: #ffffff; 
+  text-shadow: 1px 1px 1px gray;
 }
 
 .navbar-light .navbar-toggler {
-    border-color: #ffffff;
+    border-color: rgba(0, 0, 0, 0);
 }
 
 .section {
@@ -195,14 +210,16 @@ body {
 .title {
   line-height: 1.67;
   text-align: center;
-  color: #35465d;
+  color: #ffffff;
+  text-shadow: 1.5px 1.5px 1.5px #333;
 }
 
 .subtitle {
   line-height: 1.53;
   text-align: center;
-  color: #35465d;
+  color: #ffffff;
   margin-bottom: 50px;
+  text-shadow: 1.5px 1.5px 1.5px #333;
 }
 
 /* On screens that are 600px or less, set the background color to olive */
@@ -221,7 +238,7 @@ body {
 
 .upload-text {
     width: 58%;
-    font-family: NanumSquareR;
+    font-family: 'NIXGONM-Vb';
     font-size: 1.5rem;
     line-height: 1.53;
     text-align: center;
@@ -257,7 +274,7 @@ body {
   height: 2rem;
   border-radius: 10px;
   width: 100%;
-  background-color: rgba(200, 200, 0, 0.2);
+  background-color: rgba(237, 199, 121, 0.3);
 }
 .cute-bar {
   position: absolute;
@@ -265,7 +282,7 @@ body {
   left: 0;
   height: 2rem;
   border-radius: 10px;
-  background-color: rgba(200, 200, 0, 1);
+  background-color: rgba(237, 199, 121, 1);
 }
 .sexy-box {
   position: absolute;
@@ -274,7 +291,7 @@ body {
   height: 2rem;
   border-radius: 10px;
   width: 100%;
-  background-color: rgba(200, 0, 50, 0.2);
+  background-color: rgba(215, 127, 110, 0.3);
 }
 .sexy-bar {
   position: absolute;
@@ -282,7 +299,7 @@ body {
   left: 0;
   height: 2rem;
   border-radius: 10px;
-  background-color: rgba(200, 0, 50, 1);
+  background-color: rgba(215, 127, 110, 1);
 }
 .innocent-box {
   position: absolute;
@@ -291,7 +308,7 @@ body {
   height: 2rem;
   border-radius: 10px;
   width: 100%;
-  background-color: rgba(0, 200, 200, 0.2);
+  background-color: rgba(115, 165, 152, 0.3);
 }
 .innocent-bar {
   position: absolute;
@@ -299,7 +316,7 @@ body {
   left: 0;
   height: 2rem;
   border-radius: 10px;
-  background-color: rgba(0, 200, 200, 1);
+  background-color: rgba(115, 165, 152, 1);
 }
 .fresh-box {
   position: absolute;
@@ -308,7 +325,7 @@ body {
   height: 2rem;
   border-radius: 10px;
   width: 100%;
-  background-color: rgba(50, 50, 200, 0.2);
+  background-color: rgba(169, 188, 139, 0.3);
 }
 .fresh-bar {
   position: absolute;
@@ -316,7 +333,7 @@ body {
   left: 0;
   height: 2rem;
   border-radius: 10px;
-  background-color: rgba(50, 50, 200, 1);
+  background-color: rgba(169, 188, 139, 1);
 }
 
 .elegant-box {
@@ -326,7 +343,7 @@ body {
   height: 2rem;
   border-radius: 10px;
   width: 100%;
-  background-color: rgba(200, 50, 200, 0.2);
+  background-color: rgba(237, 223, 185, 0.3);
 }
 .elegant-bar {
   position: absolute;
@@ -334,16 +351,18 @@ body {
   left: 0;
   height: 2rem;
   border-radius: 10px;
-  background-color: rgba(200, 50, 200, 1);
+  background-color: rgba(237, 223, 185, 1);
 }
 
 .percent-text {
   font-size: 1rem;
+  font-weight: 700;
   color: #ffffff;
 }
 .keyword-label {
     width: 20%;
     text-align: left;
+	text-shadow: 1.5px 1.5px 1.5px #555;
     height: 2rem;
 }
 #label-container {
@@ -358,6 +377,7 @@ body {
 
 .keyword-explain {
     font-size: 1.5rem;
+	text-shadow: 1.5px 1.5px 1.5px #555;
 }
 .cute-keyword-title {
     color: #3ba363;
@@ -410,8 +430,13 @@ label {
 }
 
 
+.navbar-light .navbar-nav .active>.nav-link{
+	color: rgba(255, 255, 255, 0.8);
+}
 
-
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(255, 255, 255,.5);
+}
 
 
 
