@@ -93,6 +93,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+	<script src="https://cdn.rawgit.com/jaysalvat/jquery.facedetection/master/dist/jquery.facedetection.min.js"></script>
     <script>
         function readURL(input) {
             if (input.files && input.files[0]) {
@@ -105,8 +106,14 @@
                 };
                 reader.readAsDataURL(input.files[0]);
 				init().then(()=>{
-					console.log("teachablemachine model loaded");
-					predict();
+					if(face_detection('face-image'))
+					{
+						console.log("teachablemachine model loaded");	
+						predict();
+					}else{
+						alert("얼굴을 찾을 수 없습니다!");
+						window.location.reload();
+					}
 				});
             } else {
                 removeUpload();
@@ -199,6 +206,17 @@
                 labelContainer.childNodes[i].innerHTML = label + bar;
 			}
         }
+		
+		function face_detection(id)
+		{
+			var count = 0; 
+			$("#" + id).faceDetection({
+	        	complete: function(faces){
+	        		count = faces.length;
+		        }
+		    });
+			return count > 0;
+		}
 
     </script>
 
