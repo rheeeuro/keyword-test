@@ -414,6 +414,10 @@ body {
     color: #548dd4;
     font-size: 1.2rem;
 }
+
+.noface-keyword-title {
+    color: #222222;
+}
 /* gender */
 input#gender {
   display: none;
