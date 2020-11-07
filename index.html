@@ -152,11 +152,14 @@
         // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
         // the link to your model provided by Teachable Machine export panel
 		
+		const femaleURL = "https://teachablemachine.withgoogle.com/models/JyUcFwfnf/";
+		const maleURL = "";
+		var URL;
 		if (document.getElementById('userGender').checked){ // female model
-			const URL = "https://teachablemachine.withgoogle.com/models/JyUcFwfnf/";
+			URL = femaleURL;
 		}
 		else { // male model
-			const URL = "https://teachablemachine.withgoogle.com/models/JyUcFwfnf/"; // ****need to change
+			URL = femaleURL; // ****need to change
 		}
 		
 		
