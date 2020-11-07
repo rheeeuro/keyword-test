@@ -205,6 +205,7 @@ body {
 
 .section {
     margin-top: 50px;
+	margin-bottom: 50px;
 }
 
 .title {
@@ -218,7 +219,15 @@ body {
   line-height: 1.53;
   text-align: center;
   color: #ffffff;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
+  text-shadow: 1.5px 1.5px 1.5px #333;
+}
+
+.gender {
+  line-height: 1.53;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
   text-shadow: 1.5px 1.5px 1.5px #333;
 }
 
@@ -438,14 +447,103 @@ label {
 	color: rgba(255, 255, 255, 0.8);
 }
 
-.navbar-light .navbar-nav .nav-link {
-    color: rgba(255, 255, 255,.5);
+.button-cover, .knobs, .layer
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
 
+.button
+{
+    position: relative;
+    top: 50%;
+    width: 111px;
+    height: 54px;1
+    margin: -30px auto 0 auto;
+    overflow: hidden;
+	margin-bottom: 30px;
+}
 
+.button.r, .button.r .layer
+{
+	margin: auto;
+    border-radius: 150px;
+}
 
+.button.b2
+{
+    border-radius: 3px;
+}
 
+.checkbox
+{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
 
+.knobs
+{
+    z-index: 2;
+}
+
+.layer
+{
+    width: 100%;
+    background-color: #ebf7fc;
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+
+#button-3 .knobs:before
+{
+    content: '남자';
+    position: absolute;
+    top: 8.25px;
+    left: 6px;
+    width: 37.5px;
+    height: 37.5px;
+    color: rgba(255, 255, 255, 1);
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 13.5px 6px;
+    background-color: rgba(3, 169, 244, 1);
+    border-radius: 50%;
+    transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+}
+
+#button-3 .checkbox:active + .knobs:before
+{
+    width: 69px;
+    border-radius: 150px;
+}
+
+#button-3 .checkbox:checked:active + .knobs:before
+{
+    margin-left: -39px;
+}
+
+#button-3 .checkbox:checked + .knobs:before
+{
+    content: '여자';
+    left: 67.5px;
+    background-color: rgba(244, 67, 54, 1);
+}
+
+#button-3 .checkbox:checked ~ .layer
+{
+    background-color: rgba(252,235, 235, 1);
+}
 
 
 
