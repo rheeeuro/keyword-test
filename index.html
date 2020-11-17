@@ -18,10 +18,10 @@
 
 <body>
 	<div class="test-wrapper">
-		<div id="jsOverlay" class="overlay" style="display: none;"></div>
+		<div id="jsOverlay" class="overlay" style="display: block;"></div>
 		<div class="test-description">
-			<div id="jsLoading" class="loading" style="display: none;"></div>
-			<div id="jsLoadingText" class="loadingText" style="display: none;"><p>사진을 분석중입니다.</p></div>
+			<div id="jsLoading" class="loading" style="display: block;"></div>
+			<div id="jsLoadingText" class="loadingText" style="display: block;"><p>사진을 분석중입니다.</p></div>
 		</div>
 	</div>
     <nav class="navbar navbar-expand-lg navbar-light nav-distance">
@@ -64,7 +64,7 @@
     <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <div class="container file-upload">
         <div class="image-upload-wrap">
-            <input class="file-upload-input" id="imageUpload" type='file' accept="image/*" />
+            <input class="file-upload-input" id="imageUpload" type='file' onchange="readURL(this);" accept="image/*" />
             <div class="drag-text">
                 <img src="img/upload.svg" class="mt-5 pt-5 upload">
                 <h3 class="mb-5 pb-5 pt-4  upload-text">얼굴 사진을 올려놓거나 눌러서 업로드하세요!</h3>
@@ -108,35 +108,15 @@ Promise.all([
   faceapi.nets.faceRecognitionNet.loadFromUri('/models/face-api'),
   faceapi.nets.faceLandmark68Net.loadFromUri('/models/face-api'),
   faceapi.nets.ssdMobilenetv1.loadFromUri('/models/face-api')
-]).then(start)
-
-function start() {
+]).then(() => {
 	console.log("face-api loaded");
-	imageUpload.addEventListener('change', async() => {
-		document.getElementById("jsOverlay").style.display = "block";
-		document.getElementById("jsLoading").style.display = "block";
-		document.getElementById("jsLoadingText").style.display = "block";
-		const image = await faceapi.bufferToImage(imageUpload.files[0]);
-		const detections = await faceapi.detectAllFaces(image).withFaceLandmarks().withFaceDescriptors();
-		console.log(detections.length + "face detected");
-		if(detections.length > 0){
-			readURL(imageUpload);
-		} else {
-			document.getElementById("jsOverlay").style.display = "none";
-			document.getElementById("jsLoading").style.display = "none";
-			document.getElementById("jsLoadingText").style.display = "none";
-		
-			var title = "<div class='noface-keyword-title'>알 수 없음</div>"
-			var explain = "<div class='keyword-explain pt-2'>사진에서 얼굴을 찾을 수 없습니다.</div>"
-			$('.result-message').html(title + explain);
-		}
-	})
-}
+	document.getElementById("jsOverlay").style.display = "none";
+	document.getElementById("jsLoading").style.display = "none";
+	document.getElementById("jsLoadingText").style.display = "none";
+});
 	
 	
-	
-	
-        function readURL(input) {
+        async function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
@@ -147,10 +127,23 @@ function start() {
                 };
                 reader.readAsDataURL(input.files[0]);
 				init().then(()=>{
-				
+				const image = await faceapi.bufferToImage(imageUpload.files[0]);
+				const detections = await faceapi.detectAllFaces(image).withFaceLandmarks().withFaceDescriptors();
+				console.log(detections.length + " face detected");
 				console.log("teachablemachine model loaded");
 				
-				predict();
+				if(detections.length > 0){
+					predict();
+				} else {
+				document.getElementById("jsOverlay").style.display = "none";
+				document.getElementById("jsLoading").style.display = "none";
+				document.getElementById("jsLoadingText").style.display = "none";
+		
+				var title = "<div class='noface-keyword-title'>알 수 없음</div>"
+				var explain = "<div class='keyword-explain pt-2'>사진에서 얼굴을 찾을 수 없습니다.</div>"
+				$('.result-message').html(title + explain);
+				}
+				
 
 				});
             } else {
