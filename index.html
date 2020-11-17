@@ -117,7 +117,7 @@ function start() {
 		document.getElementById("jsLoading").style.display = "block";
 		document.getElementById("jsLoadingText").style.display = "block";
 		const image = await faceapi.bufferToImage(imageUpload.files[0]);
-		const detection = await faceapi.detectAllFaces(image).withFaceLandmarks().withFaceDescriptors();
+		const detections = await faceapi.detectAllFaces(image).withFaceLandmarks().withFaceDescriptors();
 		console.log(detections.length + "face detected");
 		if(detections.length > 0){
 			readURL(imageUpload);
