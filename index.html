@@ -127,7 +127,7 @@ Promise.all([
                 reader.readAsDataURL(input.files[0]);
 				init().then(async ()=>{
 				const image = await faceapi.bufferToImage(imageUpload.files[0]);
-				const detections = await faceapi.detectAllFaces(image).withFaceLandmarks().withFaceDescriptors();
+				const detections = await faceapi.detectAllFaces(image);
 				console.log(detections.length + " face detected");
 				console.log("teachablemachine model loaded");
 				
