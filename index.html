@@ -183,7 +183,9 @@ Promise.all([
         let model, webcam, labelContainer, maxPredictions;
         // Load the image model and setup the webcam
         async function init() {
-			
+			document.getElementById("jsOverlay").style.display = "block";
+			document.getElementById("jsLoading").style.display = "block";
+			document.getElementById("jsLoadingText").style.display = "block";
             const modelURL = URL + "model.json";
             const metadataURL = URL + "metadata.json";
             // load the model and metadata
