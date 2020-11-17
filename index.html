@@ -64,7 +64,7 @@
     <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <div class="container file-upload">
         <div class="image-upload-wrap">
-            <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+            <input class="file-upload-input" id="imageUpload" type='file' accept="image/*" />
             <div class="drag-text">
                 <img src="img/upload.svg" class="mt-5 pt-5 upload">
                 <h3 class="mb-5 pb-5 pt-4  upload-text">얼굴 사진을 올려놓거나 눌러서 업로드하세요!</h3>
@@ -100,8 +100,42 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
-	<script src="https://cdn.rawgit.com/jaysalvat/jquery.facedetection/master/dist/jquery.facedetection.min.js"></script>
+	<script src="face-api.min.js"></script>
     <script>
+const imageUpload = document.getElementById('imageUpload');
+	
+Promise.all([
+  faceapi.nets.faceRecognitionNet.loadFromUri('/models/face-api'),
+  faceapi.nets.faceLandmark68Net.loadFromUri('/models/face-api'),
+  faceapi.nets.ssdMobilenetv1.loadFromUri('/models/face-api')
+]).then(start)
+
+function start() {
+	console.log("face-api loaded");
+	imageUpload.addEventListener('change', async() => {
+		document.getElementById("jsOverlay").style.display = "block";
+		document.getElementById("jsLoading").style.display = "block";
+		document.getElementById("jsLoadingText").style.display = "block";
+		const image = await faceapi.bufferToImage(imageUpload.files[0]);
+		const detection = await faceapi.detectAllFaces(image).withFaceLandmarks().withFaceDescriptors();
+		console.log(detections.length + "face detected");
+		if(detections.length > 0){
+			readURL(imageUpload);
+		} else {
+			document.getElementById("jsOverlay").style.display = "none";
+			document.getElementById("jsLoading").style.display = "none";
+			document.getElementById("jsLoadingText").style.display = "none";
+		
+			var title = "<div class='noface-keyword-title'>알 수 없음</div>"
+			var explain = "<div class='keyword-explain pt-2'>사진에서 얼굴을 찾을 수 없습니다.</div>"
+			$('.result-message').html(title + explain);
+		}
+	})
+}
+	
+	
+	
+	
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -113,22 +147,11 @@
                 };
                 reader.readAsDataURL(input.files[0]);
 				init().then(()=>{
-					if(face_detection('face-image'))
-					{
-						console.log("teachablemachine model loaded");	
-						predict();
-					}else{
-						//alert("얼굴을 찾을 수 없습니다!");
-						//window.location.reload();
-						
-						document.getElementById("jsOverlay").style.display = "none";
-						document.getElementById("jsLoading").style.display = "none";
-						document.getElementById("jsLoadingText").style.display = "none";
+				
+				console.log("teachablemachine model loaded");
+				
+				predict();
 
-						var title = "<div class='noface-keyword-title'>알 수 없음</div>"
-						var explain = "<div class='keyword-explain pt-2'>사진에서 얼굴을 찾을 수 없습니다.</div>"
-						$('.result-message').html(title + explain);
-					}
 				});
             } else {
                 removeUpload();
@@ -154,6 +177,8 @@
 		
 		const femaleURL = "https://teachablemachine.withgoogle.com/models/JyUcFwfnf/";
 		const maleURL = "";
+		const localModelPath = "models/tf/";
+		
 		var URL;
 		if (document.getElementById('userGender').checked){ // female model
 			URL = femaleURL;
@@ -166,9 +191,7 @@
         let model, webcam, labelContainer, maxPredictions;
         // Load the image model and setup the webcam
         async function init() {
-			document.getElementById("jsOverlay").style.display = "block";
-			document.getElementById("jsLoading").style.display = "block";
-			document.getElementById("jsLoadingText").style.display = "block";
+			
             const modelURL = URL + "model.json";
             const metadataURL = URL + "metadata.json";
             // load the model and metadata
@@ -227,16 +250,6 @@
 			}
         }
 		
-		function face_detection(id)
-		{
-			var count = 0; 
-			$("#" + id).faceDetection({
-	        	complete: function(faces){
-	        		count = faces.length;
-		        }
-		    });
-			return count > 0;
-		}
 
     </script>
 
