@@ -21,7 +21,7 @@
 		<div id="jsOverlay" class="overlay" style="display: block;"></div>
 		<div class="test-description">
 			<div id="jsLoading" class="loading" style="display: block;"></div>
-			<div id="jsLoadingText" class="loadingText" style="display: block;"><p>모델을 불러오고 있습니다.</p></div>
+			<div id="jsLoadingText" class="loadingText" style="display: block;"><p id="overlayLoadingText">모델을 불러오고 있습니다.</p></div>
 		</div>
 	</div>
     <nav class="navbar navbar-expand-lg navbar-light nav-distance">
@@ -184,7 +184,8 @@ Promise.all([
         let model, webcam, labelContainer, maxPredictions;
         // Load the image model and setup the webcam
         async function init() {
-			$('.jsLoadingText').html('<p>사진을 분석중입니다.</p>');
+			
+			document.getElementById("overlayLoadingText").innerHTML = "사진을 분석중입니다.";
 			document.getElementById("jsOverlay").style.display = "block";
 			document.getElementById("jsLoading").style.display = "block";
 			document.getElementById("jsLoadingText").style.display = "block";
