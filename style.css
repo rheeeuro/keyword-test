@@ -310,6 +310,7 @@ body {
   border-radius: 10px;
   background-color: rgba(215, 127, 110, 1);
 }
+
 .innocent-box {
   position: absolute;
   top: 0;
@@ -327,6 +328,7 @@ body {
   border-radius: 10px;
   background-color: rgba(115, 165, 152, 1);
 }
+
 .fresh-box {
   position: absolute;
   top: 0;
@@ -344,7 +346,15 @@ body {
   border-radius: 10px;
   background-color: rgba(169, 188, 139, 1);
 }
-
+.chic-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(195, 140, 102, 0.2);
+}
 .elegant-box {
   position: absolute;
   top: 0;
@@ -362,71 +372,131 @@ body {
   border-radius: 10px;
   background-color: rgba(237, 223, 185, 1);
 }
+.chic-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(195, 140, 102, 1);
+}
+.tough-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(117, 204, 84, 0.2);
+}
+.tough-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(117, 204, 84, 1);
+}
+.reliable-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(27, 175, 234, 0.2);
+}
+.reliable-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(27, 175, 234, 1);
+}
+.strong-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(49, 132, 155, 0.2);
+}
+.strong-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(49, 132, 155, 1);
+}
 
 .percent-text {
   font-size: 1rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #000000;
 }
 .keyword-label {
-    width: 20%;
-    text-align: left;
-	text-shadow: 1.5px 1.5px 1.5px #555;
-    height: 2rem;
+  width: 20%;
+  text-align: left;
+  text-shadow: 1.5px 1.5px 1.5px #555;
+  height: 2rem;
 }
 #label-container {
-    width: 80%;
-    margin: 0 auto;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .result-message {
-    font-size: 2rem;
+  font-size: 2rem;
 }
-
 
 .keyword-explain {
-    font-size: 1.5rem;
-	text-shadow: 1.5px 1.5px 1.5px #555;
+  font-size: 1.5rem;
+  text-shadow: 1.5px 1.5px 1.5px #555;
 }
 .cute-keyword-title {
-    color: #3ba363;
+  color: #3ba363;
 }
 .cute-keyword-celeb {
-    color: #3ba363;
-    font-size: 1.2rem;
+  color: #3ba363;
+  font-size: 1.2rem;
 }
 .sexy-keyword-title {
-    color: #3ba363;
+  color: #3ba363;
 }
 .sexy-keyword-celeb {
-    color: #3ba363;
-    font-size: 1.2rem;
+  color: #3ba363;
+  font-size: 1.2rem;
 }
 .fresh-keyword-title {
-    color: #ff6c0a;
+  color: #ff6c0a;
 }
 .fresh-keyword-celeb {
-    color: #ff6c0a;
-    font-size: 1.2rem;
+  color: #ff6c0a;
+  font-size: 1.2rem;
 }
 .innocent-keyword-title {
-    color: #548dd4;
+  color: #548dd4;
 }
 .innocent-keyword-celeb {
-    color: #548dd4;
-    font-size: 1.2rem;
+  color: #548dd4;
+  font-size: 1.2rem;
 }
 .elegant-keyword-title {
-    color: #548dd4;
+  color: #548dd4;
 }
 .elegant-keyword-celeb {
-    color: #548dd4;
-    font-size: 1.2rem;
+  color: #548dd4;
+  font-size: 1.2rem;
 }
 
 .noface-keyword-title {
     color: #222222;
 }
+
+
 /* gender */
 input#gender {
   display: none;
