@@ -235,8 +235,8 @@ Promise.all([
               resultClass: "sexy",
               probability: parseFloat(
                 parseFloat(
-                  prediction[1].probability * 1 +
-                    prediction[4].probability * 0.7
+                  parseFloat(prediction[1].probability) * 1 +
+                    parseFloat(prediction[4].probability) * 0.7
                 ).toFixed(2)
               ),
             },
@@ -244,14 +244,14 @@ Promise.all([
               className: "듬직함",
               resultClass: "reliable",
               probability: parseFloat(
-                parseFloat(prediction[2].probability * 0.7).toFixed(2)
+                parseFloat(parseFloat(prediction[2].probability) * 0.7).toFixed(2)
               ),
             },
             {
               className: "시크함",
               resultClass: "chic",
               probability: parseFloat(
-                parseFloat(prediction[3].probability * 0.7).toFixed(2)
+                parseFloat(parseFloat(prediction[3].probability) * 0.7).toFixed(2)
               ),
             },
             {
@@ -259,9 +259,9 @@ Promise.all([
               resultClass: "tough",
               probability: parseFloat(
                 parseFloat(
-                  prediction[2].probability * 0.2 +
-                    prediction[3].probability * 0.3 +
-                    prediction[5].probability * 0.5
+                  parseFloat(prediction[2].probability) * 0.2 +
+                    parseFloat(prediction[3].probability) * 0.3 +
+                    parseFloat(prediction[5].probability) * 0.5
                 ).toFixed(2)
               ),
             },
@@ -269,7 +269,7 @@ Promise.all([
               className: "세보이는",
               resultClass: "strong",
               probability: parseFloat(
-                parseFloat(prediction[5].probability * 0.5).toFixed(2)
+                parseFloat(parseFloat(prediction[5].probability) * 0.5).toFixed(2)
               ),
             },
           ];
