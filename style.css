@@ -310,7 +310,7 @@ body {
   border-radius: 10px;
   background-color: rgba(215, 127, 110, 1);
 }
-.innocent-box {
+.innocent-box, .chic-box {
   position: absolute;
   top: 0;
   left: 0;
@@ -319,7 +319,7 @@ body {
   width: 100%;
   background-color: rgba(115, 165, 152, 0.3);
 }
-.innocent-bar {
+.innocent-bar, .chic-bar {
   position: absolute;
   top: 0;
   left: 0;
@@ -327,7 +327,7 @@ body {
   border-radius: 10px;
   background-color: rgba(115, 165, 152, 1);
 }
-.fresh-box {
+.fresh-box, .reliable-box {
   position: absolute;
   top: 0;
   left: 0;
@@ -336,7 +336,7 @@ body {
   width: 100%;
   background-color: rgba(169, 188, 139, 0.3);
 }
-.fresh-bar {
+.fresh-bar, .reliable-box {
   position: absolute;
   top: 0;
   left: 0;
@@ -345,7 +345,7 @@ body {
   background-color: rgba(169, 188, 139, 1);
 }
 
-.elegant-box {
+.elegant-box, .tough-box {
   position: absolute;
   top: 0;
   left: 0;
@@ -354,7 +354,24 @@ body {
   width: 100%;
   background-color: rgba(237, 223, 185, 0.3);
 }
-.elegant-bar {
+.elegant-bar, .tough-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(237, 223, 185, 1);
+}
+.strong-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(237, 223, 185, 0.3);
+}
+.strong-bar {
   position: absolute;
   top: 0;
   left: 0;
@@ -402,24 +419,31 @@ body {
     color: #3ba363;
     font-size: 1.2rem;
 }
-.fresh-keyword-title {
+.fresh-keyword-title, .reliable-keyword-title {
     color: #ff6c0a;
 }
-.fresh-keyword-celeb {
+.fresh-keyword-celeb, .reliable-keyword-title {
     color: #ff6c0a;
     font-size: 1.2rem;
 }
-.innocent-keyword-title {
+.innocent-keyword-title, .chic-keyword-title {
     color: #548dd4;
 }
-.innocent-keyword-celeb {
+.innocent-keyword-celeb, .chic-keyword-title {
     color: #548dd4;
     font-size: 1.2rem;
 }
-.elegant-keyword-title {
+.elegant-keyword-title, .tough-keyword-title {
     color: #548dd4;
 }
-.elegant-keyword-celeb {
+.elegant-keyword-celeb, .tough-keyword-title {
+    color: #548dd4;
+    font-size: 1.2rem;
+}
+.strong-keyword-title {
+    color: #548dd4;
+}
+.strong-keyword-celeb {
     color: #548dd4;
     font-size: 1.2rem;
 }
@@ -427,6 +451,8 @@ body {
 .noface-keyword-title {
     color: #222222;
 }
+
+
 /* gender */
 input#gender {
   display: none;
