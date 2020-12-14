@@ -171,9 +171,8 @@ Promise.all([
 		
 		//const femaleURL = "https://teachablemachine.withgoogle.com/models/JyUcFwfnf/";
 		//const maleURL = "https://teachablemachine.withgoogle.com/models/o9D1N5TN/";
-		const femaleURL = "/models/female/";
-		const maleURL = "/models/male/";
-		const localModelPath = "models/tf/";
+		const femaleURL = "/models/tm/female/";
+		const maleURL = "/models/tm/male/";
 		
 		var URL;
 		if (document.getElementById('userGender').checked){ // female model
@@ -210,25 +209,26 @@ Promise.all([
             var image = document.getElementById("face-image");
             const prediction = await model.predict(image, false);
 			
-			if (document.getElementById('userGender').checked){ // female model
-				result = [
-					{className: "귀여운", resultClass: "cute", probability: parseFloat((parseFloat(prediction[0].probability) + parseFloat(prediction[1].probability) + parseFloat(prediction[2].probability)).toFixed(2))},
-					{className: "섹시한", resultClass: "sexy", probability: parseFloat((parseFloat(prediction[3].probability) + parseFloat(prediction[4].probability) + parseFloat(prediction[5].probability)).toFixed(2))},
-					{className: "우아한", resultClass: "elegant", probability: parseFloat((parseFloat(prediction[6].probability) + parseFloat(prediction[7].probability) + parseFloat(prediction[8].probability)).toFixed(2))},
-					{className: "청순한", resultClass: "innocent", probability: parseFloat((parseFloat(prediction[9].probability) + parseFloat(prediction[10].probability) + parseFloat(prediction[11].probability)).toFixed(2))},
-					{className: "풋풋한", resultClass: "fresh", probability: parseFloat((parseFloat(prediction[12].probability) + parseFloat(prediction[13].probability) + parseFloat(prediction[14].probability)).toFixed(2))}
-				];
-			}
-			else { // male model
-				result = [
+			 if (document.getElementById("gender").checked) {
+          for (let i = 0; i < prediction.length; i++) {
+            console.log(
+              prediction[i].className +
+                ": " +
+                parseFloat(prediction[i].probability).toFixed(2)
+            );
+          }
+          result = [
             {
               className: "귀여운",
               resultClass: "cute",
               probability: parseFloat(
                 parseFloat(
-                  prediction[0].probability * 1 +
-                    prediction[2].probability * 0.1 +
-                    prediction[4].probability * 0.3
+                  prediction[0].probability * 0.67 +
+                    prediction[1].probability * 0.09 +
+                    prediction[2].probability * 0.11 +
+                    prediction[3].probability * 0.04 +
+                    prediction[4].probability * 0.43 +
+                    prediction[5].probability * 0.04
                 ).toFixed(2)
               ),
             },
@@ -237,8 +237,12 @@ Promise.all([
               resultClass: "sexy",
               probability: parseFloat(
                 parseFloat(
-                  parseFloat(prediction[1].probability) * 1 +
-                    parseFloat(prediction[4].probability) * 0.7
+                  prediction[0].probability * 0.2 +
+                    prediction[1].probability * 0.71 +
+                    prediction[2].probability * 0.08 +
+                    prediction[3].probability * 0.28 +
+                    prediction[4].probability * 0.5 +
+                    prediction[5].probability * 0.06
                 ).toFixed(2)
               ),
             },
@@ -246,14 +250,28 @@ Promise.all([
               className: "듬직함",
               resultClass: "reliable",
               probability: parseFloat(
-                parseFloat(parseFloat(prediction[2].probability) * 0.7).toFixed(2)
+                parseFloat(
+                  prediction[0].probability * 0.01 +
+                    prediction[1].probability * 0.02 +
+                    prediction[2].probability * 0.42 +
+                    prediction[3].probability * 0.05 +
+                    prediction[4].probability * 0.01 +
+                    prediction[5].probability * 0.04
+                ).toFixed(2)
               ),
             },
             {
               className: "시크함",
               resultClass: "chic",
               probability: parseFloat(
-                parseFloat(parseFloat(prediction[3].probability) * 0.7).toFixed(2)
+                parseFloat(
+                  prediction[0].probability * 0.07 +
+                    prediction[1].probability * 0.05 +
+                    prediction[2].probability * 0.04 +
+                    prediction[3].probability * 0.52 +
+                    prediction[4].probability * 0.04 +
+                    prediction[5].probability * 0.07
+                ).toFixed(2)
               ),
             },
             {
@@ -261,9 +279,12 @@ Promise.all([
               resultClass: "tough",
               probability: parseFloat(
                 parseFloat(
-                  parseFloat(prediction[2].probability) * 0.2 +
-                    parseFloat(prediction[3].probability) * 0.3 +
-                    parseFloat(prediction[5].probability) * 0.5
+                  prediction[0].probability * 0 +
+                    prediction[1].probability * 0.01 +
+                    prediction[2].probability * 0.17 +
+                    prediction[3].probability * 0.02 +
+                    prediction[4].probability * 0.01 +
+                    prediction[5].probability * 0.1
                 ).toFixed(2)
               ),
             },
@@ -271,11 +292,81 @@ Promise.all([
               className: "세보이는",
               resultClass: "strong",
               probability: parseFloat(
-                parseFloat(parseFloat(prediction[5].probability) * 0.5).toFixed(2)
+                parseFloat(
+                  prediction[0].probability * 0.04 +
+                    prediction[1].probability * 0.11 +
+                    prediction[2].probability * 0.18 +
+                    prediction[3].probability * 0.09 +
+                    prediction[4].probability * 0.01 +
+                    prediction[5].probability * 0.69
+                ).toFixed(2)
               ),
             },
           ];
-			}
+        } else {
+          for (let i = 0; i < prediction.length; i++) {
+            console.log(prediction[i]);
+            console.log(prediction[i].className);
+            console.log(parseFloat(prediction[i].probability).toFixed(2));
+          }
+          result = [
+            {
+              className: "귀여운",
+              resultClass: "cute",
+              probability: parseFloat(
+                (
+                  parseFloat(prediction[0].probability) +
+                  parseFloat(prediction[1].probability) +
+                  parseFloat(prediction[2].probability)
+                ).toFixed(2)
+              ),
+            },
+            {
+              className: "섹시한",
+              resultClass: "sexy",
+              probability: parseFloat(
+                (
+                  parseFloat(prediction[3].probability) +
+                  parseFloat(prediction[4].probability) +
+                  parseFloat(prediction[5].probability)
+                ).toFixed(2)
+              ),
+            },
+            {
+              className: "우아한",
+              resultClass: "elegant",
+              probability: parseFloat(
+                (
+                  parseFloat(prediction[6].probability) +
+                  parseFloat(prediction[7].probability) +
+                  parseFloat(prediction[8].probability)
+                ).toFixed(2)
+              ),
+            },
+            {
+              className: "청순한",
+              resultClass: "innocent",
+              probability: parseFloat(
+                (
+                  parseFloat(prediction[9].probability) +
+                  parseFloat(prediction[10].probability) +
+                  parseFloat(prediction[11].probability)
+                ).toFixed(2)
+              ),
+            },
+            {
+              className: "풋풋한",
+              resultClass: "fresh",
+              probability: parseFloat(
+                (
+                  parseFloat(prediction[12].probability) +
+                  parseFloat(prediction[13].probability) +
+                  parseFloat(prediction[14].probability)
+                ).toFixed(2)
+              ),
+            },
+          ];
+        }
 			
 		
 			
