@@ -11,6 +11,7 @@ html {
   background-repeat: no-repeat;
   background-attachment: fixed;
   font-family: "NIXGONM-Vb";
+  height: 100%;
 }
 
 .test-wrapper .overlay {
@@ -65,6 +66,7 @@ body {
   background-color: rgba(1, 1, 1, 0);
   box-sizing: border-box;
   color: #ffffff;
+  height: 100%;
 }
 
 .file-upload {
@@ -204,6 +206,7 @@ body {
 
 .section {
   margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .title {
@@ -217,7 +220,15 @@ body {
   line-height: 1.53;
   text-align: center;
   color: #ffffff;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
+  text-shadow: 1.5px 1.5px 1.5px #333;
+}
+
+.gender {
+  line-height: 1.53;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
   text-shadow: 1.5px 1.5px 1.5px #333;
 }
 
@@ -225,6 +236,7 @@ body {
 @media screen and (max-width: 600px) {
   html {
     font-size: 10px;
+    height: 100%;
   }
   .navbar-brand {
     font-size: 2rem;
@@ -477,6 +489,11 @@ body {
   color: #548dd4;
   font-size: 1.2rem;
 }
+
+.noface-keyword-title {
+  color: #222222;
+}
+
 /* gender */
 input#gender {
   display: none;
@@ -579,4 +596,52 @@ input:checked + label > .knob > i:before {
   width: 12px;
   left: 0px;
   transform: rotate(134deg);
+}
+
+.modal_wrap {
+  display: none;
+  width: 50%;
+  height: 50%;
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  margin: 0 0 0 0;
+  background: #eee;
+  z-index: 2;
+}
+.black_bg {
+  display: none;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  overflow-x: hidden;
+}
+.modal_close {
+  cursor: pointer;
+  background-color: #dddddd;
+  text-align: center;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  width: 100%;
+}
+
+/* .modal_close > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url(https://img.icons8.com/metro/26/000000/close-window.png);
+  text-indent: -9999px;
+} */
+.modal_content {
+  background-color: #fefefe;
+  color: black;
+  margin: 5%;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%;
+  height: 85%;
 }
