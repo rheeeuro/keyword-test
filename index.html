@@ -209,7 +209,7 @@ Promise.all([
             var image = document.getElementById("face-image");
             const prediction = await model.predict(image, false);
 			
-			 if (document.getElementById("userGender").checked) {
+			 if (!document.getElementById("userGender").checked) {
           for (let i = 0; i < prediction.length; i++) {
             console.log(
               prediction[i].className +
