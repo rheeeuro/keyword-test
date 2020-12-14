@@ -175,18 +175,18 @@ Promise.all([
 		const maleURL = "/models/tm/male/";
 		
 		var URL;
-		if (document.getElementById('userGender').checked){ // female model
-			URL = femaleURL;
-		}
-		else { // male model
-			URL = maleURL; // ****need to change
-		}
+		
 		
 		
         let model, webcam, labelContainer, maxPredictions;
         // Load the image model and setup the webcam
         async function init() {
-			
+			if (document.getElementById('userGender').checked){ // female model
+			URL = femaleURL;
+		}
+		else { // male model
+			URL = maleURL; // ****need to change
+		}
 			document.getElementById("jsOverlay").style.display = "block";
 			document.getElementById("jsLoading").style.display = "block";
 			document.getElementById("jsLoadingText2").style.display = "block";
@@ -209,10 +209,12 @@ Promise.all([
             var image = document.getElementById("face-image");
             const prediction = await model.predict(image, false);
 			
+			
+			
 			 if (!document.getElementById("userGender").checked) {
-          for (let i = 0; i < prediction.length; i++) {
-            console.log(
-              prediction[i].className +
+			 for (let i = 0; i < prediction.length; i++) {
+			 console.log(
+			 prediction[i].className +
                 ": " +
                 parseFloat(prediction[i].probability).toFixed(2)
             );
