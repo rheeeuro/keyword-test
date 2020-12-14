@@ -106,8 +106,8 @@
 const imageUpload = document.getElementById('imageUpload');
 	
 Promise.all([
-  faceapi.nets.faceRecognitionNet.loadFromUri('/models/face-api'),
-  faceapi.nets.faceLandmark68Net.loadFromUri('/models/face-api'),
+  //faceapi.nets.faceRecognitionNet.loadFromUri('/models/face-api'),
+  //faceapi.nets.faceLandmark68Net.loadFromUri('/models/face-api'),
   faceapi.nets.ssdMobilenetv1.loadFromUri('/models/face-api')
 ]).then(() => {
 	console.log("face-api loaded");
