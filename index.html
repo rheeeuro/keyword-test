@@ -296,12 +296,12 @@ const imageUpload = document.getElementById('imageUpload');
 			
 			var barWidth, percentage;
             for (let i = 0; i < result.length; i++) {
-                if (result[i].probability.toFixed(2) > 0.1) {
-                    barWidth = Math.round(result[i].probability.toFixed(2) * 100) + "%";
-					percentage = Math.round(result[i].probability.toFixed(2) * 100) + "%";
-                } else if (result[i].probability.toFixed(2) >= 0.01) {
+                if (result[i].probability > 0.1) {
+                    barWidth = Math.round(result[i].probability * 100) + "%";
+					percentage = Math.round(result[i].probability * 100) + "%";
+                } else if (result[i].probability >= 0.01) {
                     barWidth = "4%"
-					percentage = Math.round(result[i].probability.toFixed(2) * 100) + "%";
+					percentage = Math.round(result[i].probability * 100) + "%";
                 } else {
                     barWidth = "2%"
 					percentage = "";
