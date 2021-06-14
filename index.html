@@ -249,9 +249,11 @@ const imageUpload = document.getElementById('imageUpload');
           ];
         } else {
           for (let i = 0; i < prediction.length; i++) {
-            console.log(prediction[i]);
-            console.log(prediction[i].className);
-            console.log(parseFloat(prediction[i].probability).toFixed(2));
+			 console.log(
+			 prediction[i].className +
+                ": " +
+                parseFloat(prediction[i].probability).toFixed(2)
+            );
           }
           result = [
             {
